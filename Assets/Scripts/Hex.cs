@@ -13,10 +13,12 @@ public class Hex : MonoBehaviour {
 
 	public bool isBuilding;
 	public Map map;
+	public int hexType;
 
 	void Start () {
 		isSelected = false;
 		map = GameObject.Find ("Generated_map").GetComponent <Map> ();
+		hexType = map.hexType [x + (y * 40)];
 	}
 
 	void Update () {
@@ -27,6 +29,7 @@ public class Hex : MonoBehaviour {
 		}
 
 		if (turnCount == 5) {
+			GameObject.Find ("MouseManager").GetComponent <MouseManager> ().canBuild = true;
 			GameObject.Find ("MouseManager").GetComponent <NextTurnManager> ().RemoveBuilding(this.gameObject);
 			map.ChangeHexes (building, this);
 		}

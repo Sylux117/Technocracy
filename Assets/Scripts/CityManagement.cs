@@ -20,6 +20,5 @@ public class CityManagement : MonoBehaviour {
 		} else {
 			canvas.SetActive (false);
 		}
-	}
-	
+	}	
 }
