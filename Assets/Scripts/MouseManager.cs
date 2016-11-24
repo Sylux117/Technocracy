@@ -7,11 +7,13 @@ public class MouseManager : MonoBehaviour {
 	public Unit selectedUnit;
 	public Map map;
 	public Hex oldHex;
+	public CityManagement city;
 
 	public bool buildingBiology;
 	public bool buildingEnergy;
 	public bool buildingEngineering;
 	public bool buildingFactory;
+	public bool buildingFarm;
 	public bool buildingPhysics;
 	public bool buildingSensor;
 
@@ -24,6 +26,7 @@ public class MouseManager : MonoBehaviour {
 	void Start () {
 		map = GameObject.Find ("Generated_map").GetComponent <Map> ();
 		canBuild = true;
+		city = GameObject.FindGameObjectWithTag ("City").GetComponent <CityManagement> ();
 	}
 	
 	// Update is called once per frame
@@ -42,52 +45,46 @@ public class MouseManager : MonoBehaviour {
 				MouseOver_Unit (hitObject);
 			}
 
-			if (buildingBiology == true && Input.GetMouseButtonDown(1) && canBuild == true) {
-				if (Vector3.Distance (hitObject.transform.parent.transform.position, new Vector3 (34.125f, 0f, 16.5f)) <= 5.26) {
-					this.gameObject.GetComponent <Constructor> ().BuildBiology(hitObject.GetComponentInParent <Hex> ());
-					buildingBiology = false;
-					canBuild = false;
-				}
+			if (buildingBiology == true && Input.GetMouseButtonDown(1) && canBuild == true && InRange(hitObject)) {				
+				this.gameObject.GetComponent <Constructor> ().BuildBiology(hitObject.GetComponentInParent <Hex> ());
+				buildingBiology = false;
+				canBuild = false;
 			}
 
-			if (buildingEnergy == true && Input.GetMouseButtonDown(1) && canBuild == true) {
-				if (Mathf.Abs (hitObject.GetComponentInParent <Hex> ().x - 19) + Mathf.Abs (hitObject.GetComponentInParent <Hex> ().y - 11) == 3) {
-					this.gameObject.GetComponent <Constructor> ().BuildEnergy (hitObject.GetComponentInParent <Hex> ());
-					buildingEnergy = false;
-					canBuild = false;
-				}
+			if (buildingEnergy == true && Input.GetMouseButtonDown(1) && canBuild == true && InRange(hitObject)) {
+				this.gameObject.GetComponent <Constructor> ().BuildEnergy (hitObject.GetComponentInParent <Hex> ());
+				buildingEnergy = false;
+				canBuild = false;			
 			}
 
-			if (buildingEngineering == true && Input.GetMouseButtonDown(1) && canBuild == true) {
-				if (Mathf.Abs (hitObject.GetComponentInParent <Hex> ().x - 19) + Mathf.Abs (hitObject.GetComponentInParent <Hex> ().y - 11) == 3) {
-					this.gameObject.GetComponent <Constructor> ().BuildEngineering (hitObject.GetComponentInParent <Hex> ());
-					buildingEngineering = false;
-					canBuild = false;
-				}
+			if (buildingEngineering == true && Input.GetMouseButtonDown(1) && canBuild == true && InRange(hitObject)) {				
+				this.gameObject.GetComponent <Constructor> ().BuildEngineering (hitObject.GetComponentInParent <Hex> ());
+				buildingEngineering = false;
+				canBuild = false;
 			}
 
-			if (buildingFactory == true && Input.GetMouseButtonDown(1) && canBuild == true) {
-				if (Mathf.Abs (hitObject.GetComponentInParent <Hex> ().x - 19) + Mathf.Abs (hitObject.GetComponentInParent <Hex> ().y - 11) == 3) {
-					this.gameObject.GetComponent <Constructor> ().BuildFactory (hitObject.GetComponentInParent <Hex> ());
-					buildingFactory = false;
-					canBuild = false;
-				}
+			if (buildingFactory == true && Input.GetMouseButtonDown(1) && canBuild == true && InRange(hitObject)) {			
+				this.gameObject.GetComponent <Constructor> ().BuildFactory (hitObject.GetComponentInParent <Hex> ());
+				buildingFactory = false;
+				canBuild = false;
 			}
 
-			if (buildingPhysics == true && Input.GetMouseButtonDown(1) && canBuild == true) {
-				if (Mathf.Abs (hitObject.GetComponentInParent <Hex> ().x - 19) + Mathf.Abs (hitObject.GetComponentInParent <Hex> ().y - 11) == 3) {
-					this.gameObject.GetComponent <Constructor> ().BuildPhysics (hitObject.GetComponentInParent <Hex> ());
-					buildingPhysics = false;
-					canBuild = false;
-				}
+			if (buildingFarm == true && Input.GetMouseButtonDown(1) && canBuild == true && InRange(hitObject)) {			
+				this.gameObject.GetComponent <Constructor> ().BuildFarm (hitObject.GetComponentInParent <Hex> ());
+				buildingFarm = false;
+				canBuild = false;
 			}
 
-			if (buildingSensor == true && Input.GetMouseButtonDown(1) && canBuild == true) {
-				if (Mathf.Abs (hitObject.GetComponentInParent <Hex> ().x - 19) + Mathf.Abs (hitObject.GetComponentInParent <Hex> ().y - 11) == 3) {
-					this.gameObject.GetComponent <Constructor> ().BuildSensor (hitObject.GetComponentInParent <Hex> ());
-					buildingSensor = false;
-					canBuild = false;
-				}
+			if (buildingPhysics == true && Input.GetMouseButtonDown(1) && canBuild == true && InRange(hitObject)) {
+				this.gameObject.GetComponent <Constructor> ().BuildPhysics (hitObject.GetComponentInParent <Hex> ());
+				buildingPhysics = false;
+				canBuild = false;
+			}
+
+			if (buildingSensor == true && Input.GetMouseButtonDown(1) && canBuild == true && InRange(hitObject)) {
+				this.gameObject.GetComponent <Constructor> ().BuildSensor (hitObject.GetComponentInParent <Hex> ());
+				buildingSensor = false;
+				canBuild = false;
 			}
 
 			if (hitObject == null) {
@@ -140,6 +137,28 @@ public class MouseManager : MonoBehaviour {
 		}
   	}
 
+	public bool InRange (GameObject hitObject) {
+		int dist = map.HexDistance (city.gameObject.GetComponent <Hex> ().x, city.gameObject.GetComponent <Hex> ().y, hitObject.GetComponentInParent <Hex> ().x, hitObject.GetComponentInParent <Hex> ().y);
+		if (city.cityLevel == 1) {
+			if (dist > 1)
+				return false;
+			else
+				return true;			
+		} else if (city.cityLevel == 2) {
+			if (dist > 2)
+				return false;
+			else
+				return true;
+		} else if (city.cityLevel == 3) {
+			if (dist > 3)
+				return false;
+			else
+				return true;
+		} else {
+			return true;
+		}
+	}
+
 	#region Building
 
 	public void BuildingBiology () {
@@ -147,6 +166,7 @@ public class MouseManager : MonoBehaviour {
 		buildingEnergy = false;
 		buildingEngineering = false;
 		buildingFactory = false;
+		buildingFarm = false;
 		buildingPhysics = false;
 		buildingSensor = false;
 	}
@@ -156,6 +176,7 @@ public class MouseManager : MonoBehaviour {
 		buildingEnergy = true;
 		buildingEngineering = false;
 		buildingFactory = false;
+		buildingFarm = false;
 		buildingPhysics = false;
 		buildingSensor = false;
 	}
@@ -165,6 +186,7 @@ public class MouseManager : MonoBehaviour {
 		buildingEnergy = false;
 		buildingEngineering = true;
 		buildingFactory = false;
+		buildingFarm = false;
 		buildingPhysics = false;
 		buildingSensor = false;
 	}
@@ -174,15 +196,27 @@ public class MouseManager : MonoBehaviour {
 		buildingEnergy = false;
 		buildingEngineering = false;
 		buildingFactory = true;
+		buildingFarm = false;
 		buildingPhysics = false;
 		buildingSensor = false;
   	}
+
+	public void BuildingFarm () {
+		buildingBiology = false;
+		buildingEnergy = false;
+		buildingEngineering = false;
+		buildingFactory = false;
+		buildingFarm = true;
+		buildingPhysics = false;
+		buildingSensor = false;
+	}
 
 	public void BuildingPhysics () {
 		buildingBiology = false;
 		buildingEnergy = false;
 		buildingEngineering = false;
 		buildingFactory = false;
+		buildingFarm = false;
 		buildingPhysics = true;
 		buildingSensor = false;	}
 
@@ -191,6 +225,7 @@ public class MouseManager : MonoBehaviour {
 		buildingEnergy = false;
 		buildingEngineering = false;
 		buildingFactory = false;
+		buildingFarm = false;
 		buildingPhysics = false;
 		buildingSensor = true;
 	}

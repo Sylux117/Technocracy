@@ -13,4 +13,5 @@ public class Node {
 	public float DistanceTo (Node n) {
 		return Vector2.Distance (new Vector2 (x, y), new Vector2 (n.x, n.y));
 	}
+
 }

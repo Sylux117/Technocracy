@@ -10,6 +10,20 @@ public class NextTurnManager : MonoBehaviour {
 	public Text turnNumber;
 	public List <GameObject> building;
 
+	public float food = 0;
+	public float production = 0;
+	public float biology = 0;
+	public float physics = 0;
+	public float engineering = 0;
+
+	public Text foodText;
+	public Text productionText;
+	public Text biologyText;
+	public Text physicsText;
+	public Text engineeringText;
+
+
+
 
 	void Start () {
 		turnCount = 0;
@@ -33,6 +47,8 @@ public class NextTurnManager : MonoBehaviour {
 
 		turnCount++;
 		ShowTurn ();
+		Resources ();
+		ShowResources ();
 	}
 
 	public void ShowTurn () {
@@ -50,4 +66,178 @@ public class NextTurnManager : MonoBehaviour {
 			}
 		}
 	}
+
+	public void Resources () {
+		GameObject city = GameObject.FindGameObjectWithTag ("City");
+		int cityx = city.GetComponent <Hex> ().x;
+		int cityy = city.GetComponent <Hex> ().y;
+		food = city.GetComponent <Hex> ().food;
+		production = city.GetComponent <Hex> ().production;
+
+		if (city.GetComponent <CityManagement> ().cityLevel == 1) {
+			Hex target1 = GameObject.Find ("Hex_" + (cityx + 1) + "_" + cityy).GetComponent <Hex> ();
+			Hex target2 = GameObject.Find ("Hex_" + (cityx - 1) + "_" + cityy).GetComponent <Hex> ();
+				
+			food += target1.food;
+			food += target2.food;
+			production += target1.production;
+			production += target2.production;
+			biology += target1.biology;
+			biology += target2.biology;
+			physics += target1.physics;
+			physics += target2.physics;
+			engineering += target1.engineering;
+			engineering += target2.engineering;
+
+			for (int i = 0; i < 2; i++) {
+				Hex targeti1 = GameObject.Find ("Hex_" + (cityx + i) + "_" + (cityy + 1)).GetComponent <Hex> ();
+				Hex targeti2 = GameObject.Find ("Hex_" + (cityx + i) + "_" + (cityy - 1)).GetComponent <Hex> ();
+				food += targeti1.food;
+				food += targeti2.food;
+				production += targeti1.production;
+				production += targeti2.production;
+				biology += targeti1.biology;
+				biology += targeti2.biology;
+				physics += targeti1.physics;
+				physics += targeti2.physics;
+				engineering += targeti1.engineering;
+				engineering += targeti2.engineering;
+			}
+
+			city.GetComponent <CityManagement> ().CityLeveler (food, production, biology, physics, engineering);
+		}
+
+		if (city.GetComponent <CityManagement> ().cityLevel == 2) {
+			for (int x = 0; x < 2; x++) {
+				Hex target1 = GameObject.Find ("Hex_" + (x + cityx + 1) + "_" + cityy).GetComponent <Hex> ();
+				Hex target2 = GameObject.Find ("Hex_" + (cityx - 1 - x) + "_" + cityy).GetComponent <Hex> ();
+
+				food += target1.food;
+				food += target2.food;
+				production += target1.production;
+				production += target2.production;
+				biology += target1.biology;
+				biology += target2.biology;
+				physics += target1.physics;
+				physics += target2.physics;
+				engineering += target1.engineering;
+				engineering += target2.engineering;
+			}
+			for (int i = 1; i < 5; i++) {
+				Hex target1 = GameObject.Find ("Hex_" + (cityx - 2 + i) + "_" + (cityy + 1)).GetComponent <Hex> ();
+				Hex target2 = GameObject.Find ("Hex_" + (cityx - 2 + i) + "_" + (cityy - 1)).GetComponent <Hex> ();
+				food += target1.food;
+				food += target2.food;
+				production += target1.production;
+				production += target2.production;
+				biology += target1.biology;
+				biology += target2.biology;
+				physics += target1.physics;
+				physics += target2.physics;
+				engineering += target1.engineering;
+				engineering += target2.engineering;
+			}
+			for (int x = 0; x < 3; x++) {
+				Hex target1 = GameObject.Find ("Hex_" + (x + cityx - 1) + "_" + (cityy + 2)).GetComponent <Hex> ();
+				Hex target2 = GameObject.Find ("Hex_" + (x + cityx - 1) + "_" + (cityy - 2)).GetComponent <Hex> ();
+				food += target1.food;
+				production += target1.production;
+				food += target2.food;
+				production += target2.production;
+				biology += target1.biology;
+				biology += target2.biology;
+				physics += target1.physics;
+				physics += target2.physics;
+				engineering += target1.engineering;
+				engineering += target2.engineering;
+			}
+			city.GetComponent <CityManagement> ().CityLeveler (food, production, biology, physics, engineering);
+		}
+
+		if (city.GetComponent <CityManagement> ().cityLevel == 3) {
+			for (int x = 0; x < 3; x++) {
+				Hex target1 = GameObject.Find ("Hex_" + (x + cityx + 1) + "_" + cityy).GetComponent <Hex> ();
+				Hex target2 = GameObject.Find ("Hex_" + (cityx - 1 - x) + "_" + cityy).GetComponent <Hex> ();
+
+				food += target1.food;
+				food += target2.food;
+				production += target1.production;
+				production += target2.production;
+				biology += target1.biology;
+				biology += target2.biology;
+				physics += target1.physics;
+				physics += target2.physics;
+				engineering += target1.engineering;
+				engineering += target2.engineering;
+			}
+			for (int i = 0; i < 6; i++) {
+				Hex target1 = GameObject.Find ("Hex_" + (cityx - 2 + i) + "_" + (cityy + 1)).GetComponent <Hex> ();
+				Hex target2 = GameObject.Find ("Hex_" + (cityx - 2 + i) + "_" + (cityy - 1)).GetComponent <Hex> ();
+
+				food += target1.food;
+				food += target2.food;
+				production += target1.production;
+				production += target2.production;
+				biology += target1.biology;
+				biology += target2.biology;
+				physics += target1.physics;
+				physics += target2.physics;
+				engineering += target1.engineering;
+				engineering += target2.engineering;
+			}
+			for (int x = 0; x < 2; x++) {
+				Hex target1 = GameObject.Find ("Hex_" + (x + cityx + 1) + "_" + (cityy + 2)).GetComponent <Hex> ();
+				Hex target2 = GameObject.Find ("Hex_" + (cityx - 1 - x) + "_" + (cityy + 2)).GetComponent <Hex> ();
+				Hex target3 = GameObject.Find ("Hex_" + (x + cityx + 1) + "_" + (cityy - 2)).GetComponent <Hex> ();
+				Hex target4 = GameObject.Find ("Hex_" + (cityx - 1 - x) + "_" + (cityy - 2)).GetComponent <Hex> ();
+
+				food += target1.food;
+				food += target2.food;
+				production += target1.production;
+				production += target2.production;
+				food += target3.food;
+				food += target4.food;
+				production += target3.production;
+				production += target4.production;
+				biology += target1.biology;
+				biology += target2.biology;
+				biology += target3.biology;
+				biology += target4.biology;
+				physics += target1.physics;
+				physics += target2.physics;
+				physics += target3.physics;
+				physics += target4.physics;
+				engineering += target1.engineering;
+				engineering += target2.engineering;
+				engineering += target3.engineering;
+				engineering += target4.engineering;
+			}
+			for (int i = 0; i < 4; i++) {
+				Hex target1 = GameObject.Find ("Hex_" + (cityx - 1 + i) + "_" + (cityy + 3)).GetComponent <Hex> ();
+				Hex target2 = GameObject.Find ("Hex_" + (cityx - 1 + i) + "_" + (cityy - 3)).GetComponent <Hex> ();
+
+				food += target1.food;
+				food += target2.food;
+				production += target1.production;
+				production += target2.production;
+				biology += target1.biology;
+				biology += target2.biology;
+				physics += target1.physics;
+				physics += target2.physics;
+				engineering += target1.engineering;
+				engineering += target2.engineering;
+			}
+
+			city.GetComponent <CityManagement> ().CityLeveler (food, production, biology, physics, engineering);
+		}
+	}
+
+	public void ShowResources () {
+		foodText.text = "Food: " + food;
+		productionText.text = "Production: " + production;
+		biologyText.text = "Biology: " + biology;
+		physicsText.text = "Physics: " + physics;
+		engineeringText.text = "Engineering: " + engineering;
+	}
+
 }
