@@ -307,12 +307,13 @@ public class Map : MonoBehaviour {
 	public int HexDistance (int x1, int y1, int x2, int y2) {
 		int dx = x2 - x1;
 		int dy = y2 - y1;
-		int dist = 100;
-		if (Mathf.Sign(dx) == Mathf.Sign(dy)) {
-			dist = (int) Mathf.Max (Mathf.Abs (dx), Mathf.Abs (dy));
-		} else if (Mathf.Sign(dx) != Mathf.Sign(dy)){
-			dist = Mathf.Abs (dx) + Mathf.Abs (dy);
-		}
-		return dist;
+		int x = Mathf.Abs (dx);
+		int y = Mathf.Abs (dy);
+
+		if ((dx < 0) ^ ((y1 & 1) == 1))
+			x = Mathf.Max (0, x - (y + 1) / 2);
+		else
+			x = Mathf.Max (0, x - (y) / 2);
+		return x + y;
 	}
 }

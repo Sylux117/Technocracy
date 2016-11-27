@@ -1590,9 +1590,20 @@ MonoBehaviour:
   building: 0
   isSelected: 0
   turnCount: 0
+  buildingProduction: 0
+  beginCount: 0
   isBuilding: 0
   map: {fileID: 0}
   hexType: 0
+  Cost: 0
+  sliderPrefab: {fileID: 107376, guid: c1672f980e6952042a5dccf4bd5d67db, type: 2}
+  food: 0
+  production: 0
+  biology: 0
+  physics: 0
+  engineering: 0
+  gold: 0
+  silver: 0
 --- !u!198 &19836294
 ParticleSystem:
   m_ObjectHideFlags: 1

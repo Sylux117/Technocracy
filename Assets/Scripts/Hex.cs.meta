@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 1d214de8967c98542b0939150bb38d72
-timeCreated: 1478756738
+timeCreated: 1480204323
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - map: {instanceID: 0}
+  - sliderPrefab: {fileID: 107376, guid: c1672f980e6952042a5dccf4bd5d67db, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

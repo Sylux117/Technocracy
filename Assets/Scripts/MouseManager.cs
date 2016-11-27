@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.EventSystems;
 
@@ -9,6 +10,8 @@ public class MouseManager : MonoBehaviour {
 	public Hex oldHex;
 	public CityManagement city;
 
+	public bool building;
+
 	public bool buildingBiology;
 	public bool buildingEnergy;
 	public bool buildingEngineering;
@@ -16,10 +19,19 @@ public class MouseManager : MonoBehaviour {
 	public bool buildingFarm;
 	public bool buildingPhysics;
 	public bool buildingSensor;
+	public bool trainingScout;
+	public bool trainingSF;
+	public bool trainingSE;
 
 	public bool canBuild;
 
 	public bool isInBuildingRange;
+
+	public GameObject slider;
+
+	public Text text;
+
+	public Image image;
 
 
 	// Use this for initialization
@@ -87,6 +99,34 @@ public class MouseManager : MonoBehaviour {
 				canBuild = false;
 			}
 
+			if (trainingScout == true && canBuild == true) {
+				this.gameObject.GetComponent <Constructor> ().turnCount = 0;
+				this.gameObject.GetComponent <Constructor> ().scoutCount = true;
+				this.gameObject.GetComponent <Constructor> ().isTraining = true;
+				this.gameObject.GetComponent <Constructor> ().Cost = 50;
+				trainingScout = false;
+				canBuild = false;
+			}
+
+			if (trainingSF == true && canBuild == true) {
+				this.gameObject.GetComponent <Constructor> ().turnCount = 0;
+				this.gameObject.GetComponent <Constructor> ().SFCount = true;
+				this.gameObject.GetComponent <Constructor> ().isTraining = true;
+				this.gameObject.GetComponent <Constructor> ().Cost = 75;
+				trainingSF = false;
+				canBuild = false;
+			}
+
+			if (trainingSE == true && canBuild == true) {
+				this.gameObject.GetComponent <Constructor> ().turnCount = 0;
+				this.gameObject.GetComponent <Constructor> ().SECount = true;
+				this.gameObject.GetComponent <Constructor> ().isTraining = true;
+				this.gameObject.GetComponent <Constructor> ().Cost = 100;
+				trainingSE = false;
+				canBuild = false;
+			}
+
+
 			if (hitObject == null) {
 				oldHex.isSelected = false;
 				selectedUnit = null;
@@ -94,6 +134,10 @@ public class MouseManager : MonoBehaviour {
 			}
 
 		}
+
+		slider.transform.position = Camera.main.WorldToScreenPoint (city.gameObject.transform.position + new Vector3 (0.05f, 1f, 1f));
+		text.transform.position = Camera.main.WorldToScreenPoint (city.gameObject.transform.position + new Vector3 (-1.5f, 1f, 1f));
+		image.transform.position = Camera.main.WorldToScreenPoint (city.gameObject.transform.position + new Vector3 (-1.5f, 1f, 1f));
 	}
 
 	void MouseOver_Hex(GameObject hitObject) {
@@ -161,6 +205,14 @@ public class MouseManager : MonoBehaviour {
 
 	#region Building
 
+	public void Buildings () {
+		GameObject.FindGameObjectWithTag("City").GetComponent <CityManagement> ().ChangeCanvas(1);
+	}
+
+	public void Units () {
+		GameObject.FindGameObjectWithTag("City").GetComponent <CityManagement> ().ChangeCanvas(2);
+	}
+
 	public void BuildingBiology () {
 		buildingBiology = true;
 		buildingEnergy = false;
@@ -169,6 +221,9 @@ public class MouseManager : MonoBehaviour {
 		buildingFarm = false;
 		buildingPhysics = false;
 		buildingSensor = false;
+		trainingScout = false;
+		trainingSF = false;
+		trainingSE = false;
 	}
 
 	public void BuildingEnergy () {
@@ -179,6 +234,9 @@ public class MouseManager : MonoBehaviour {
 		buildingFarm = false;
 		buildingPhysics = false;
 		buildingSensor = false;
+		trainingScout = false;
+		trainingSF = false;
+		trainingSE = false;
 	}
 
 	public void BuildingEngineering () {
@@ -189,6 +247,9 @@ public class MouseManager : MonoBehaviour {
 		buildingFarm = false;
 		buildingPhysics = false;
 		buildingSensor = false;
+		trainingScout = false;
+		trainingSF = false;
+		trainingSE = false;
 	}
 
 	public void BuildingFactory () {
@@ -199,6 +260,9 @@ public class MouseManager : MonoBehaviour {
 		buildingFarm = false;
 		buildingPhysics = false;
 		buildingSensor = false;
+		trainingScout = false;
+		trainingSF = false;
+		trainingSE = false;
   	}
 
 	public void BuildingFarm () {
@@ -209,6 +273,9 @@ public class MouseManager : MonoBehaviour {
 		buildingFarm = true;
 		buildingPhysics = false;
 		buildingSensor = false;
+		trainingScout = false;
+		trainingSF = false;
+		trainingSE = false;
 	}
 
 	public void BuildingPhysics () {
@@ -218,7 +285,11 @@ public class MouseManager : MonoBehaviour {
 		buildingFactory = false;
 		buildingFarm = false;
 		buildingPhysics = true;
-		buildingSensor = false;	}
+		buildingSensor = false;
+		trainingScout = false;
+		trainingSF = false;
+		trainingSE = false;
+	}
 
 	public void BuildingSensor () {
 		buildingBiology = false;
@@ -228,6 +299,48 @@ public class MouseManager : MonoBehaviour {
 		buildingFarm = false;
 		buildingPhysics = false;
 		buildingSensor = true;
+		trainingScout = false;
+		trainingSF = false;
+		trainingSE = false;
+	}
+
+	public void TrainingScout () {
+		buildingBiology = false;
+		buildingEnergy = false;
+		buildingEngineering = false;
+		buildingFactory = false;
+		buildingFarm = false;
+		buildingPhysics = false;
+		buildingSensor = false;
+		trainingScout = true;
+		trainingSF = false;
+		trainingSE = false;
+	}
+
+	public void TrainingSF () {
+		buildingBiology = false;
+		buildingEnergy = false;
+		buildingEngineering = false;
+		buildingFactory = false;
+		buildingFarm = false;
+		buildingPhysics = false;
+		buildingSensor = false;
+		trainingScout = false;
+		trainingSF = true;
+		trainingSE = false;
+	}
+
+	public void TrainingSE () {
+		buildingBiology = false;
+		buildingEnergy = false;
+		buildingEngineering = false;
+		buildingFactory = false;
+		buildingFarm = false;
+		buildingPhysics = false;
+		buildingSensor = false;
+		trainingScout = false;
+		trainingSF = false;
+		trainingSE = true;
 	}
 
 	#endregion

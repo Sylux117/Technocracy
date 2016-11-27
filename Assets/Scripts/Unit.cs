@@ -7,34 +7,29 @@ public class Unit : MonoBehaviour {
 	public int y;
 	public Map map;
 
-
 	public Vector3 destination;
 
 	float speed = 3;
 
 	public List <Node> currentPath = null;
 
-	 public bool isSelected;
-	 public GameObject selected;
+	public bool isSelected;
+	public GameObject selected;
 
 	public bool moving;
 
-	int moveSpeed = 2;
+	public int moveSpeed;
 
 	private Vector3 dir;
 
+	public int isBeingTrained;
 
-	// Use this for initialization
 	void Start () {
 		map = GameObject.Find ("Generated_map").GetComponent <Map> ();
-		/*destination = transform.position;*/
 		moving = false;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-
-
 		
 		if (currentPath != null) {
 			int currNode = 0;

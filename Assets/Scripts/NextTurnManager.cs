@@ -41,14 +41,26 @@ public class NextTurnManager : MonoBehaviour {
 			units [i].GetComponent <Unit> ().MoveNextHex ();
 		}
 
-		for (int i = 0; i < building.Count; i++) {
-			building [i].gameObject.GetComponent <Hex> ().turnCount++;
-		}
+		GameObject map = GameObject.Find ("Generated_map").gameObject;
+		this.gameObject.GetComponent <Constructor> ().turnCount++;
 
-		turnCount++;
-		ShowTurn ();
+
 		Resources ();
 		ShowResources ();
+		this.gameObject.GetComponent <MouseManager> ().slider.GetComponent <Slider> ().value = GameObject.FindGameObjectWithTag ("City").GetComponent <CityManagement> ().food;
+		this.gameObject.GetComponent <MouseManager> ().text.text = (GameObject.FindGameObjectWithTag ("City").GetComponent <CityManagement> ().cityLevel.ToString ());
+		ShowTurn ();
+		turnCount++;
+
+
+		for (int i = 0; i < building.Count; i++) {
+			building [i].gameObject.GetComponent <Hex> ().buildingProduction += (int)production;
+		}
+
+		this.gameObject.GetComponent <Constructor> ().buildingProduction += (int)production;
+
+
+
 	}
 
 	public void ShowTurn () {
@@ -154,7 +166,7 @@ public class NextTurnManager : MonoBehaviour {
 			city.GetComponent <CityManagement> ().CityLeveler (food, production, biology, physics, engineering);
 		}
 
-		if (city.GetComponent <CityManagement> ().cityLevel == 3) {
+		if (city.GetComponent <CityManagement> ().cityLevel >= 3) {
 			for (int x = 0; x < 3; x++) {
 				Hex target1 = GameObject.Find ("Hex_" + (x + cityx + 1) + "_" + cityy).GetComponent <Hex> ();
 				Hex target2 = GameObject.Find ("Hex_" + (cityx - 1 - x) + "_" + cityy).GetComponent <Hex> ();

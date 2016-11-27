@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class Hex : MonoBehaviour {
@@ -10,10 +11,17 @@ public class Hex : MonoBehaviour {
 	public bool isSelected;
 
 	public int turnCount;
+	public int buildingProduction;
+	public bool beginCount = false;
 
 	public bool isBuilding;
 	public Map map;
 	public int hexType;
+
+	public int Cost;
+	public GameObject slider;
+	public GameObject sliderPrefab;
+	private int sliderCount = 1;
 
 	public float food;
 	public float production;
@@ -37,9 +45,32 @@ public class Hex : MonoBehaviour {
 			transform.FindChild ("Particle System").gameObject.SetActive (false);
 		}
 
-		if (turnCount == 5) {
+		if (isBuilding == true && beginCount == false) {
+			buildingProduction = 0;
+			beginCount = true;
+		}
+
+		if (beginCount == true) {
+			if (sliderCount < 2) {
+				slider = Instantiate (sliderPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation) as GameObject;
+				sliderCount++;
+				slider.transform.SetParent (GameObject.Find ("Canvas").gameObject.transform);
+			}
+			if (slider != null) {
+				slider.GetComponent <Slider> ().value = buildingProduction;
+				slider.GetComponent <Slider> ().maxValue = Cost;
+				slider.transform.position = Camera.main.WorldToScreenPoint (this.gameObject.transform.position + new Vector3 (0.0f, 1f, 1f));
+			}				
+			if (buildingProduction >= Cost) {
+				Destroy (slider);
+			}
+		}
+
+		if (beginCount == true && buildingProduction >= Cost) {
 			GameObject.Find ("MouseManager").GetComponent <MouseManager> ().canBuild = true;
 			GameObject.Find ("MouseManager").GetComponent <NextTurnManager> ().RemoveBuilding(this.gameObject);
+			isBuilding = false;
+			beginCount = false;
 			map.ChangeHexes (building, this);
 		}
 	}
