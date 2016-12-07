@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class Hex : MonoBehaviour {
 
+	#region Variables
 	public int x;
 	public int y;
 	public int building;
@@ -30,6 +31,7 @@ public class Hex : MonoBehaviour {
 	public float engineering;
 	public bool gold;
 	public bool silver;
+	#endregion
 
 	void Start () {
 		isSelected = false;
@@ -114,11 +116,15 @@ public class Hex : MonoBehaviour {
 		}
 
 		if (hexType == 9 || hexType == 10 || hexType == 11 || hexType == 12) {
-			biology += 10;
+			biology += 1;
 		}
 
 		if (hexType == 17 || hexType == 18 || hexType == 19 || hexType == 20) {
-			engineering += 10;
+			engineering += 1;
+		}
+
+		if (hexType == 33 || hexType == 34 || hexType == 35 || hexType == 36) {
+			physics += 1;
 		}
 
 		if (hexType == 21 || hexType == 22 || hexType == 23 || hexType == 24) {
@@ -128,11 +134,6 @@ public class Hex : MonoBehaviour {
 		if (hexType == 45 || hexType == 46 || hexType == 47 || hexType == 48) {
 			food += 2;
 		}
-
-		if (hexType == 33 || hexType == 34 || hexType == 35 || hexType == 36) {
-			physics += 10;
-		}
-
 		#endregion
 	}
 }

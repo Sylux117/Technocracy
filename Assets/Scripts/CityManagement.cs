@@ -4,6 +4,7 @@ using System.Collections;
 
 public class CityManagement : MonoBehaviour {
 
+	#region Variables
 	public GameObject canvas;
 	public GameObject buildingCanvas;
 	public GameObject unitCanvas;
@@ -16,10 +17,14 @@ public class CityManagement : MonoBehaviour {
 	public float biology;
 	public float physics;
 	public float engineering;
+	public float extra = 0;
+	public float extraBiology = 0;
+	public float extraPhysics = 0;
+	public float extraEngineering = 0;
 
 	public bool active;
 	public int activeCanvas;
-
+	#endregion
 
 	void Start () {
 		canvas = GameObject.Find("CityCanvas").gameObject;
@@ -60,6 +65,7 @@ public class CityManagement : MonoBehaviour {
 		}
 	}
 
+	#region Functions
 	public void CityLeveler (float foodPerTurn, float productionPerTurn, float biologyPerTurn, float physicsPerTurn, float engineeringPerTurn) {
 		if (food + foodPerTurn >= 200) {
 			GameObject.Find ("MouseManager").GetComponent <MouseManager> ().slider.GetComponent <Slider> ().maxValue = 800;
@@ -74,10 +80,10 @@ public class CityManagement : MonoBehaviour {
 			GameObject.Find ("MouseManager").GetComponent <MouseManager> ().slider.GetComponent <Slider> ().maxValue = 7800;
 		}
 		food += foodPerTurn;
-		production += productionPerTurn;
-		biology += biologyPerTurn;
-		physics += physicsPerTurn;
-		engineering += engineeringPerTurn;
+		production += productionPerTurn + extra;
+		biology += biologyPerTurn + extraBiology;
+		physics += physicsPerTurn + extraPhysics;
+		engineering += engineeringPerTurn + extraEngineering;
 
 	}
 
@@ -99,4 +105,18 @@ public class CityManagement : MonoBehaviour {
 			unitCanvas.SetActive (true);
 		}
 	}
+
+	public void ResearchPay (int type, float cost) {
+		if (type == 0) {
+			biology = biology - cost;
+		}
+		if (type == 1) {
+			engineering = engineering - cost;
+		}
+		if (type == 2) {
+			physics = physics - cost;
+		}
+	}
+	#endregion
+
 }

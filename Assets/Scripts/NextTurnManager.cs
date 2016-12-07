@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class NextTurnManager : MonoBehaviour {
 
+	#region Variables
 	int turnCount;
 	public GameObject[] units;
 	public Text turnNumber;
@@ -21,9 +22,7 @@ public class NextTurnManager : MonoBehaviour {
 	public Text biologyText;
 	public Text physicsText;
 	public Text engineeringText;
-
-
-
+	#endregion
 
 	void Start () {
 		turnCount = 0;
@@ -35,13 +34,13 @@ public class NextTurnManager : MonoBehaviour {
 		units = GameObject.FindGameObjectsWithTag ("Unit");
 	}
 
+	#region Functions
 	public void NextTurn () {
 
 		for (int i = 0; i < units.Length; i++) {
 			units [i].GetComponent <Unit> ().MoveNextHex ();
 		}
 
-		GameObject map = GameObject.Find ("Generated_map").gameObject;
 		this.gameObject.GetComponent <Constructor> ().turnCount++;
 
 
@@ -85,6 +84,12 @@ public class NextTurnManager : MonoBehaviour {
 		int cityy = city.GetComponent <Hex> ().y;
 		food = city.GetComponent <Hex> ().food;
 		production = city.GetComponent <Hex> ().production;
+
+		food = 0;
+		production = 0;
+		biology = 0;
+		physics = 0;
+		engineering = 0;
 
 		if (city.GetComponent <CityManagement> ().cityLevel == 1) {
 			Hex target1 = GameObject.Find ("Hex_" + (cityx + 1) + "_" + cityy).GetComponent <Hex> ();
@@ -247,9 +252,10 @@ public class NextTurnManager : MonoBehaviour {
 	public void ShowResources () {
 		foodText.text = "Food: " + food;
 		productionText.text = "Production: " + production;
-		biologyText.text = "Biology: " + biology;
-		physicsText.text = "Physics: " + physics;
-		engineeringText.text = "Engineering: " + engineering;
+		biologyText.text = "Biology: " + GameObject.FindGameObjectWithTag ("City").GetComponent <CityManagement> ().biology;
+		physicsText.text = "Physics: " + GameObject.FindGameObjectWithTag ("City").GetComponent <CityManagement> ().physics;
+		engineeringText.text = "Engineering: " + GameObject.FindGameObjectWithTag ("City").GetComponent <CityManagement> ().engineering;
 	}
+	#endregion
 
 }

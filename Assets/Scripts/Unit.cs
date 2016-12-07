@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class Unit : MonoBehaviour {
 
+	#region Variables
 	public int x;
 	public int y;
 	public Map map;
@@ -23,6 +24,7 @@ public class Unit : MonoBehaviour {
 	private Vector3 dir;
 
 	public int isBeingTrained;
+	#endregion
 
 	void Start () {
 		map = GameObject.Find ("Generated_map").GetComponent <Map> ();
@@ -50,6 +52,7 @@ public class Unit : MonoBehaviour {
 
 	}
 
+	#region Functions
 	public void MoveNextHex () {
 		float remainingMovement = moveSpeed;
 		while (remainingMovement > 0 && moving == true) {
@@ -75,4 +78,5 @@ public class Unit : MonoBehaviour {
 		velocity = Vector3.ClampMagnitude (velocity, dir.magnitude);
 		transform.Translate (velocity);
 	}
+	#endregion
 }

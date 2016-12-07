@@ -4,12 +4,10 @@ using System.Linq;
 
 public class Map : MonoBehaviour {
 
+	#region Variables
 	public GameObject hexPrefab;
 	public GameObject selectedUnit;
 
-	//Size of the map in terms of number of hex tiles
-	//This is NOT representative of the amount of world space that we're going to take up.
-	//(i.e. our tiles might be more or less than 1 Unity World Unit)
 	public int width = 40;
 	public int height = 25;
 
@@ -20,14 +18,15 @@ public class Map : MonoBehaviour {
 	public int[,] hexes;
 	public int[] hexType;
 	Node[,] graph;
+	#endregion
 
 	void Start () {
 		GenerateMapData ();
 		GenerateMapVisual ();
 		GeneratePathfindingGraph ();
-
 	}
 
+	#region Functions
 	void GenerateMapData () {
 
 		hexes = new int[width, height];
@@ -201,9 +200,6 @@ public class Map : MonoBehaviour {
 	}
 
 	public bool UnitCanEnterHex (int x, int y) {
-
-
-
 		return hextypes [hexes [x, y]].isWalkable;
 	}
 
@@ -316,4 +312,6 @@ public class Map : MonoBehaviour {
 			x = Mathf.Max (0, x - (y) / 2);
 		return x + y;
 	}
+	#endregion
+
 }
