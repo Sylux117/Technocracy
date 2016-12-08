@@ -41,12 +41,7 @@ public class Hex : MonoBehaviour {
 	}
 
 	void Update () {
-		if (isSelected == true) {
-			transform.FindChild ("Particle System").gameObject.SetActive (true);
-		} else if (isSelected == false) {
-			transform.FindChild ("Particle System").gameObject.SetActive (false);
-		}
-
+		
 		if (isBuilding == true && beginCount == false) {
 			buildingProduction = 0;
 			beginCount = true;

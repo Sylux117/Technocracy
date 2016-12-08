@@ -38,6 +38,20 @@ public class NextTurnManager : MonoBehaviour {
 	public void NextTurn () {
 
 		for (int i = 0; i < units.Length; i++) {
+			if (units [i].GetComponent <Unit> ().currentPath == null) {
+				return;
+			}
+		}
+
+		if (this.gameObject.GetComponent <MouseManager> ().canBuild == true) {
+			return;
+		}
+
+		if (GameObject.Find("TechTree").GetComponent <TechTree> ().canResearch == true) {
+			return;
+		}
+
+		for (int i = 0; i < units.Length; i++) {
 			units [i].GetComponent <Unit> ().MoveNextHex ();
 		}
 

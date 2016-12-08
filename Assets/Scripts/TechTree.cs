@@ -141,7 +141,7 @@ public class TechTree : MonoBehaviour {
 	public float physics;
 
 	#region Tech Improvements Variables
-	public GameObject Scout;
+	public GameObject Scientist;
 	public GameObject Factory;
 	public GameObject Farm;
 	public GameObject Solar;
@@ -157,6 +157,13 @@ public class TechTree : MonoBehaviour {
 	public bool extraAP = false;
 	public bool extraDU = false;
 	public bool extraN = false;
+	#endregion
+
+	#region NextTurn stopper
+	public Image BiologyImage;
+	public Image PhysicsImage;
+	public Image EngineeringImage;
+	public bool canResearch = false;
 	#endregion
 
 	#endregion
@@ -217,6 +224,122 @@ public class TechTree : MonoBehaviour {
 		if (toggle.isOn == false) {
 			techCanvas.gameObject.SetActive (false);
 		}
+
+		#region Tech avaiable shower
+		#region Tier 0
+		if (AlarianEcologyCost <= city.biology && !AlarianEcologyResearched) {
+			BiologyImage.color = Color.red;
+			canResearch = true;
+		}
+		if (HabitationCost <= city.engineering && !HabitationResearched) {
+			EngineeringImage.color = Color.red;
+			canResearch = true;
+		}
+		if (PlanetarySurveyCost <= city.physics && !PlanetarySurveyResearched) {
+			PhysicsImage.color = Color.red;
+			canResearch = true;
+		}
+		#endregion
+		#region Tier 1
+		#region Tier 1 Biology
+		if (AlienBiologyCost <= city.biology && !AlienBiologyResearched) {
+			BiologyImage.color = Color.red;
+			canResearch = true;
+		}
+		if (BiogeneticsCost <= city.biology && !BiogeneticsResearched) {
+			BiologyImage.color = Color.red;
+			canResearch = true;
+		}
+		if (ProstheticsCost <= city.biology && !ProstheticsResearched) {
+			BiologyImage.color = Color.red;
+			canResearch = true;
+		}
+		if (SocialPhychCost <= city.biology && !SocialPhychResearched) {
+			BiologyImage.color = Color.red;
+			canResearch = true;
+		}
+		#endregion
+		#region Tier 1 Engineering
+		if (MineralProcessingCost <= city.engineering && !MineralProcessingResearched) {
+			EngineeringImage.color = Color.red;
+			canResearch = true;
+		}
+		if (CommunicationNetworkCost <= city.engineering && !CommunicationNetworkResearched) {
+			EngineeringImage.color = Color.red;
+			canResearch = true;
+		}
+		if (ConstructorCrewsCost <= city.engineering && !ConstructorCrewsResearched) {
+			EngineeringImage.color = Color.red;
+			canResearch = true;
+		}
+		if (PoweredExoskeletonsCost <= city.engineering && !PoweredExoskeletonsResearched) {
+			EngineeringImage.color = Color.red;
+			canResearch = true;
+		}
+		#endregion
+		#region Tier 1 Physics
+		if (CleanEnergyCost <= city.physics && !CleanEnergyResearched) {
+			PhysicsImage.color = Color.red;
+			canResearch = true;
+		}
+		if (ComputersCost <= city.physics && !ComputersResearched) {
+			PhysicsImage.color = Color.red;
+			canResearch = true;
+		}
+		if (AppliedPhysicsCost <= city.physics && !AppliedPhysicsResearched) {
+			PhysicsImage.color = Color.red;
+			canResearch = true;
+		}
+		if (GeophysicsCost <= city.physics && !GeophysicsResearched) {
+			PhysicsImage.color = Color.red;
+			canResearch = true;
+		}
+		#endregion
+		#endregion
+		#region Tier 2
+		#region Tier 2 Engineering
+		if (IndustrialBaseCost <= city.engineering && !IndustrialBaseResearched) {
+			EngineeringImage.color = Color.red;
+			canResearch = true;
+		}
+		if (PioneeringCost <= city.engineering && !PioneeringResearched) {
+			EngineeringImage.color = Color.red;
+			canResearch = true;
+		}
+		if (RoboticsCost <= city.engineering && !RoboticsResearched) {
+			EngineeringImage.color = Color.red;
+			canResearch = true;
+		}
+		if (VehiclesCost <= city.engineering && !VehiclesResearched) {
+			EngineeringImage.color = Color.red;
+			canResearch = true;
+		}
+		#endregion
+		#region Tier 2 Physics
+		if (DatabankUplinksCost <= city.physics && !DatabankUplinksResearched) {
+			PhysicsImage.color = Color.red;
+			canResearch = true;
+		}
+		if (PowerGridsCost <= city.physics && !PowerGridsResearched) {
+			PhysicsImage.color = Color.red;
+			canResearch = true;
+		}
+		if (IonThrustersCost <= city.physics && !IonThrustersResearched) {
+			PhysicsImage.color = Color.red;
+			canResearch = true;
+		}
+		if (NanotechnologyCost <= city.physics && !NanotechnologyResearched) {
+			PhysicsImage.color = Color.red;
+			canResearch = true;
+		}
+		#endregion
+		#endregion
+		if (!canResearch) {
+			BiologyImage.color = new Color (255, 255, 255, 100);
+			EngineeringImage.color = new Color (255, 255, 255, 100);
+			PhysicsImage.color = new Color (255, 255, 255, 100);
+		}
+		#endregion
 
 		#region Activate Toggle
 		#region Tier 0
@@ -342,6 +465,7 @@ public class TechTree : MonoBehaviour {
 			AlarianEcology.isOn = false;
 			AlarianEcology.enabled = false;
 			AlarianEcology.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (Habitation.isOn == true) {
@@ -350,6 +474,7 @@ public class TechTree : MonoBehaviour {
 			Habitation.isOn = false;
 			Habitation.enabled = false;
 			Habitation.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (PlanetarySurvey.isOn == true) {
@@ -358,6 +483,7 @@ public class TechTree : MonoBehaviour {
 			PlanetarySurvey.isOn = false;
 			PlanetarySurvey.enabled = false;
 			PlanetarySurvey.gameObject.SetActive(false);
+			canResearch = false;
 		}
 		#endregion
 		#region Tier 1
@@ -369,6 +495,7 @@ public class TechTree : MonoBehaviour {
 			AlienBiology.isOn = false;
 			AlienBiology.enabled = false;
 			AlienBiology.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (Biogenetics.isOn == true) {
@@ -377,6 +504,7 @@ public class TechTree : MonoBehaviour {
 			Biogenetics.isOn = false;
 			Biogenetics.enabled = false;
 			Biogenetics.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (Prosthetics.isOn == true) {
@@ -385,6 +513,7 @@ public class TechTree : MonoBehaviour {
 			Prosthetics.isOn = false;
 			Prosthetics.enabled = false;
 			Prosthetics.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (SocialPhych.isOn == true) {
@@ -393,6 +522,7 @@ public class TechTree : MonoBehaviour {
 			SocialPhych.isOn = false;
 			SocialPhych.enabled = false;
 			SocialPhych.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		#endregion
@@ -404,6 +534,7 @@ public class TechTree : MonoBehaviour {
 			MineralProcessing.isOn = false;
 			MineralProcessing.enabled = false;
 			MineralProcessing.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (CommunicationNetwork.isOn == true) {
@@ -412,6 +543,7 @@ public class TechTree : MonoBehaviour {
 			CommunicationNetwork.isOn = false;
 			CommunicationNetwork.enabled = false;
 			CommunicationNetwork.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (ConstructorCrews.isOn == true) {
@@ -420,6 +552,7 @@ public class TechTree : MonoBehaviour {
 			ConstructorCrews.isOn = false;
 			ConstructorCrews.enabled = false;
 			ConstructorCrews.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (PoweredExoskeletons.isOn == true) {
@@ -428,6 +561,7 @@ public class TechTree : MonoBehaviour {
 			PoweredExoskeletons.isOn = false;
 			PoweredExoskeletons.enabled = false;
 			PoweredExoskeletons.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		#endregion
@@ -439,6 +573,7 @@ public class TechTree : MonoBehaviour {
 			CleanEnergy.isOn = false;
 			CleanEnergy.enabled = false;
 			CleanEnergy.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (Computers.isOn == true) {
@@ -447,6 +582,7 @@ public class TechTree : MonoBehaviour {
 			Computers.isOn = false;
 			Computers.enabled = false;
 			Computers.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (AppliedPhysics.isOn == true) {
@@ -455,6 +591,7 @@ public class TechTree : MonoBehaviour {
 			AppliedPhysics.isOn = false;
 			AppliedPhysics.enabled = false;
 			AppliedPhysics.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (Geophysics.isOn == true) {
@@ -463,6 +600,7 @@ public class TechTree : MonoBehaviour {
 			Geophysics.isOn = false;
 			Geophysics.enabled = false;
 			Geophysics.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		#endregion
@@ -476,6 +614,7 @@ public class TechTree : MonoBehaviour {
 			IndustrialBase.isOn = false;
 			IndustrialBase.enabled = false;
 			IndustrialBase.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (Pioneering.isOn == true) {
@@ -484,6 +623,7 @@ public class TechTree : MonoBehaviour {
 			Pioneering.isOn = false;
 			Pioneering.enabled = false;
 			Pioneering.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (Robotics.isOn == true) {
@@ -492,6 +632,7 @@ public class TechTree : MonoBehaviour {
 			Robotics.isOn = false;
 			Robotics.enabled = false;
 			Robotics.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (Vehicles.isOn == true) {
@@ -500,6 +641,7 @@ public class TechTree : MonoBehaviour {
 			Vehicles.isOn = false;
 			Vehicles.enabled = false;
 			Vehicles.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		#endregion
@@ -511,6 +653,7 @@ public class TechTree : MonoBehaviour {
 			DatabankUplinks.isOn = false;
 			DatabankUplinks.enabled = false;
 			DatabankUplinks.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (PowerGrids.isOn == true) {
@@ -519,6 +662,7 @@ public class TechTree : MonoBehaviour {
 			PowerGrids.isOn = false;
 			PowerGrids.enabled = false;
 			PowerGrids.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (IonThrusters.isOn == true) {
@@ -527,6 +671,7 @@ public class TechTree : MonoBehaviour {
 			IonThrusters.isOn = false;
 			IonThrusters.enabled = false;
 			IonThrusters.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		if (Nanotechnology.isOn == true) {
@@ -535,6 +680,7 @@ public class TechTree : MonoBehaviour {
 			Nanotechnology.isOn = false;
 			Nanotechnology.enabled = false;
 			Nanotechnology.gameObject.SetActive(false);
+			canResearch = false;
 		}
 
 		#endregion
@@ -568,9 +714,9 @@ public class TechTree : MonoBehaviour {
 		#endregion
 		#region Tier 1 Engineering
 		if (!CommunicationNetworkResearched) {
-			Scout.SetActive (false);
+			Scientist.SetActive (false);
 		} else {
-			Scout.SetActive (true);
+			Scientist.SetActive (true);
 		}
 		if (ConstructorCrewsResearched && !extraCC) {
 			city.extra += 3;
@@ -592,6 +738,7 @@ public class TechTree : MonoBehaviour {
 			city.extraBiology += 1;
 			city.extraPhysics += 1;
 			city.extraEngineering += 1;
+			extraC = true;
 		}
 		if (AppliedPhysicsResearched && !extraAP) {
 			city.extra += 3;
@@ -619,6 +766,7 @@ public class TechTree : MonoBehaviour {
 			city.extraPhysics += 1;
 			city.extraEngineering += 1;
 			Sensor.SetActive(true);
+			extraDU = true;
 		} else if (!DatabankUplinksResearched) {Sensor.SetActive(false);}
 		if (NanotechnologyResearched && !extraN) {
 			city.extra += 3;

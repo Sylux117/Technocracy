@@ -34,6 +34,8 @@ public class MouseManager : MonoBehaviour {
 	public Text text;
 
 	public Image image;
+
+	public GameObject Target;
 	#endregion
 
 	void Start () {
@@ -111,7 +113,7 @@ public class MouseManager : MonoBehaviour {
 				this.gameObject.GetComponent <Constructor> ().turnCount = 0;
 				this.gameObject.GetComponent <Constructor> ().scoutCount = true;
 				this.gameObject.GetComponent <Constructor> ().isTraining = true;
-				this.gameObject.GetComponent <Constructor> ().Cost = 50;
+				this.gameObject.GetComponent <Constructor> ().Cost = 25;
 				trainingScout = false;
 				canBuild = false;
 			}
@@ -121,7 +123,7 @@ public class MouseManager : MonoBehaviour {
 				this.gameObject.GetComponent <Constructor> ().turnCount = 0;
 				this.gameObject.GetComponent <Constructor> ().SFCount = true;
 				this.gameObject.GetComponent <Constructor> ().isTraining = true;
-				this.gameObject.GetComponent <Constructor> ().Cost = 75;
+				this.gameObject.GetComponent <Constructor> ().Cost = 50;
 				trainingSF = false;
 				canBuild = false;
 			}
@@ -131,7 +133,7 @@ public class MouseManager : MonoBehaviour {
 				this.gameObject.GetComponent <Constructor> ().turnCount = 0;
 				this.gameObject.GetComponent <Constructor> ().SECount = true;
 				this.gameObject.GetComponent <Constructor> ().isTraining = true;
-				this.gameObject.GetComponent <Constructor> ().Cost = 100;
+				this.gameObject.GetComponent <Constructor> ().Cost = 75;
 				trainingSE = false;
 				canBuild = false;
 			}
@@ -169,6 +171,7 @@ public class MouseManager : MonoBehaviour {
 		}
 
 		if (selectedUnit != null && Input.GetMouseButtonDown(1) && hitObject.GetComponent <Unit> () == null) {
+			GameObject target = Instantiate (Target, hitObject.transform.position, Quaternion.identity) as GameObject;
 			map.selectedUnit = selectedUnit.gameObject;
 			map.GeneratePathTo ((hitObject.GetComponent <Hex> ().x), (hitObject.GetComponent <Hex> ().y), selectedUnit.x, selectedUnit.y);
 		} else if (selectedUnit != null && hitObject.GetComponent <Unit>() == null && Input.GetMouseButtonDown(0)) {

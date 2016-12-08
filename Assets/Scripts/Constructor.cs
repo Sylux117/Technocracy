@@ -50,8 +50,7 @@ public class Constructor : MonoBehaviour {
 				slider.GetComponent <Slider> ().value = buildingProduction;
 				slider.GetComponent <Slider> ().maxValue = Cost;
 			}
-			if (buildingProduction >= Cost) {
-				
+			if (buildingProduction >= Cost) {				
 				Destroy (slider);
 			}
 		}
@@ -115,25 +114,25 @@ public class Constructor : MonoBehaviour {
 			Hex newHex = map.BuildingHex (7, hex);
 			newHex.building = 13;
 			newHex.isBuilding = true;
-			newHex.Cost = 25;
+			newHex.Cost = 100;
 		}
 		if (hex.hexType == 1 || hex.hexType == 11 || hex.hexType == 15 || hex.hexType == 19 || hex.hexType == 23 || hex.hexType == 27 || hex.hexType == 31 || hex.hexType == 35 || hex.hexType == 39 || hex.hexType == 43) {
 			Hex newHex = map.BuildingHex (7, hex);
 			newHex.building = 15;
 			newHex.isBuilding = true;
-			newHex.Cost = 25;
+			newHex.Cost = 100;
 		}
 		if (hex.hexType == 5 || hex.hexType == 10 || hex.hexType == 14 || hex.hexType == 18 || hex.hexType == 22 || hex.hexType == 26 || hex.hexType == 30 ||  hex.hexType == 34 || hex.hexType == 38 || hex.hexType == 42) {
 			Hex newHex = map.BuildingHex (8, hex);
 			newHex.building = 14;
 			newHex.isBuilding = true;
-			newHex.Cost = 25;
+			newHex.Cost = 100;
 		}
 		if (hex.hexType == 6 || hex.hexType == 12 || hex.hexType == 16 || hex.hexType == 20 || hex.hexType == 24 || hex.hexType == 28 || hex.hexType == 32 ||  hex.hexType == 36 || hex.hexType == 40 || hex.hexType == 44) {
 			Hex newHex = map.BuildingHex (8, hex);
 			newHex.building = 16;
 			newHex.isBuilding = true;
-			newHex.Cost = 25;
+			newHex.Cost = 100;
 		}
 	}
 
@@ -169,25 +168,25 @@ public class Constructor : MonoBehaviour {
 			Hex newHex = map.BuildingHex (7, hex);
 			newHex.building = 21;
 			newHex.isBuilding = true;
-			newHex.Cost = 50;
+			newHex.Cost = 100;
 		}
 		if (hex.hexType == 1 || hex.hexType == 11 || hex.hexType == 15 || hex.hexType == 19 || hex.hexType == 23 || hex.hexType == 27 || hex.hexType == 31 || hex.hexType == 35 || hex.hexType == 39 || hex.hexType == 43) {
 			Hex newHex = map.BuildingHex (7, hex);
 			newHex.building = 23;
 			newHex.isBuilding = true;
-			newHex.Cost = 50;
+			newHex.Cost = 100;
 		}
 		if (hex.hexType == 5 || hex.hexType == 10 || hex.hexType == 14 || hex.hexType == 18 || hex.hexType == 22 || hex.hexType == 26 || hex.hexType == 30 ||  hex.hexType == 34 || hex.hexType == 38 || hex.hexType == 42) {
 			Hex newHex = map.BuildingHex (8, hex);
 			newHex.building = 22;
 			newHex.isBuilding = true;
-			newHex.Cost = 50;
+			newHex.Cost = 100;
 		}
 		if (hex.hexType == 6 || hex.hexType == 12 || hex.hexType == 16 || hex.hexType == 20 || hex.hexType == 24 || hex.hexType == 28 || hex.hexType == 32 ||  hex.hexType == 36 || hex.hexType == 40 || hex.hexType == 44) {
 			Hex newHex = map.BuildingHex (8, hex);
 			newHex.building = 24;
 			newHex.isBuilding = true;
-			newHex.Cost = 50;
+			newHex.Cost = 100;
 		}
 	}
 
@@ -196,25 +195,25 @@ public class Constructor : MonoBehaviour {
 			Hex newHex = map.BuildingHex (7, hex);
 			newHex.building = 45;
 			newHex.isBuilding = true;
-			newHex.Cost = 25;
+			newHex.Cost = 100;
 		}
 		if (hex.hexType == 1 || hex.hexType == 11 || hex.hexType == 15 || hex.hexType == 19 || hex.hexType == 23 || hex.hexType == 27 || hex.hexType == 31 || hex.hexType == 35 || hex.hexType == 39 || hex.hexType == 43) {
 			Hex newHex = map.BuildingHex (7, hex);
 			newHex.building = 47;
 			newHex.isBuilding = true;
-			newHex.Cost = 25;
+			newHex.Cost = 100;
 		}
 		if (hex.hexType == 5 || hex.hexType == 10 || hex.hexType == 14 || hex.hexType == 18 || hex.hexType == 22 || hex.hexType == 26 || hex.hexType == 30 ||  hex.hexType == 34 || hex.hexType == 38 || hex.hexType == 42) {
 			Hex newHex = map.BuildingHex (8, hex);
 			newHex.building = 46;
 			newHex.isBuilding = true;
-			newHex.Cost = 25;
+			newHex.Cost = 100;
 		}
 		if (hex.hexType == 6 || hex.hexType == 12 || hex.hexType == 16 || hex.hexType == 20 || hex.hexType == 24 || hex.hexType == 28 || hex.hexType == 32 ||  hex.hexType == 36 || hex.hexType == 40 || hex.hexType == 44) {
 			Hex newHex = map.BuildingHex (8, hex);
 			newHex.building = 48;
 			newHex.isBuilding = true;
-			newHex.Cost = 25;
+			newHex.Cost = 100;
 		}
 	}
 
@@ -250,25 +249,25 @@ public class Constructor : MonoBehaviour {
 			Hex newHex = map.BuildingHex (7, hex);
 			newHex.building = 37;
 			newHex.isBuilding = true;
-			newHex.Cost = 25;
+			newHex.Cost = 100;
 		}
 		if (hex.hexType == 1 || hex.hexType == 11 || hex.hexType == 15 || hex.hexType == 19 || hex.hexType == 23 || hex.hexType == 27 || hex.hexType == 31 || hex.hexType == 35 || hex.hexType == 39 || hex.hexType == 43) {
 			Hex newHex = map.BuildingHex (7, hex);
 			newHex.building = 39;
 			newHex.isBuilding = true;
-			newHex.Cost = 25;
+			newHex.Cost = 100;
 		}
 		if (hex.hexType == 5 || hex.hexType == 10 || hex.hexType == 14 || hex.hexType == 18 || hex.hexType == 22 || hex.hexType == 26 || hex.hexType == 30 ||  hex.hexType == 34 || hex.hexType == 38 || hex.hexType == 42) {
 			Hex newHex = map.BuildingHex (8, hex);
 			newHex.building = 38;
 			newHex.isBuilding = true;
-			newHex.Cost = 25;
+			newHex.Cost = 100;
 		}
 		if (hex.hexType == 6 || hex.hexType == 12 || hex.hexType == 16 || hex.hexType == 20 || hex.hexType == 24 || hex.hexType == 28 || hex.hexType == 32 ||  hex.hexType == 36 || hex.hexType == 40 || hex.hexType == 44) {
 			Hex newHex = map.BuildingHex (8, hex);
 			newHex.building = 40;
 			newHex.isBuilding = true;
-			newHex.Cost = 25;
+			newHex.Cost = 100;
 		}
 	}
 
