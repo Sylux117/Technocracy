@@ -174,6 +174,7 @@ public class MouseManager : MonoBehaviour {
 			GameObject target = Instantiate (Target, hitObject.transform.position, Quaternion.identity) as GameObject;
 			map.selectedUnit = selectedUnit.gameObject;
 			map.GeneratePathTo ((hitObject.GetComponent <Hex> ().x), (hitObject.GetComponent <Hex> ().y), selectedUnit.x, selectedUnit.y);
+			selectedUnit.GetComponent <Unit> ().waiting = false;
 		} else if (selectedUnit != null && hitObject.GetComponent <Unit>() == null && Input.GetMouseButtonDown(0)) {
 			selectedUnit.isSelected = false;
 			selectedUnit = null;

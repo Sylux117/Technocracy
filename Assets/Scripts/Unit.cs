@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class Unit : MonoBehaviour {
@@ -24,11 +25,22 @@ public class Unit : MonoBehaviour {
 	private Vector3 dir;
 
 	public int isBeingTrained;
+
+	public GameObject unitCanvas;
+	public bool waiting;
+	private GameObject UnitCanvas;
+	public bool CombatUnit;
+	public bool SecurityForces;
+	public bool Scientist;
 	#endregion
 
 	void Start () {
 		map = GameObject.Find ("Generated_map").GetComponent <Map> ();
 		moving = false;
+		UnitCanvas = Instantiate (unitCanvas, Vector3.zero, Quaternion.identity) as GameObject;
+		UnitCanvas.gameObject.SetActive (false);
+		UnitCanvas.gameObject.GetComponent <UnitCanvas> ().unit = this.gameObject;
+		UnitCanvas.transform.SetParent (this.gameObject.transform);
 	}
 
 	void Update () {
@@ -46,8 +58,15 @@ public class Unit : MonoBehaviour {
 
 		if (isSelected == true) {
 			selected.SetActive (true);
+			UnitCanvas.SetActive (true);
 		} else {
 			selected.SetActive (false);
+			UnitCanvas.SetActive (false);
+		}
+
+		if (moving == true) {
+			waiting = false;
+			UnitCanvas.gameObject.GetComponentInChildren <Toggle> ().isOn = false;
 		}
 
 	}

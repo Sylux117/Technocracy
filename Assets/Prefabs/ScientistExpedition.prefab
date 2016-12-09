@@ -220,6 +220,11 @@ MonoBehaviour:
   moving: 0
   moveSpeed: 2
   isBeingTrained: 0
+  unitCanvas: {fileID: 123960, guid: cc8e753dce3dada4aa219367ff498cb0, type: 2}
+  waiting: 0
+  CombatUnit: 0
+  SecurityForces: 0
+  Scientist: 1
 --- !u!114 &11494580
 MonoBehaviour:
   m_ObjectHideFlags: 1

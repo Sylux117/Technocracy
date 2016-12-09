@@ -365,6 +365,10 @@ MonoBehaviour:
   selected: {fileID: 132234}
   moving: 0
   moveSpeed: 3
+  isBeingTrained: 0
+  unitCanvas: {fileID: 123960, guid: cc8e753dce3dada4aa219367ff498cb0, type: 2}
+  waiting: 0
+  CombatUnit: 1
 --- !u!114 &11485956
 MonoBehaviour:
   m_ObjectHideFlags: 1

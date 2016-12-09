@@ -147,6 +147,7 @@ public class TechTree : MonoBehaviour {
 	public GameObject Solar;
 	public GameObject Sensor;
 	public GameObject Security;
+	public GameObject Scout;
 	public bool extraCC = false;
 	public bool extraPE = false;
 	public bool extraR = false;
@@ -694,6 +695,16 @@ public class TechTree : MonoBehaviour {
 		} else {
 			Farm.SetActive (true);
 		}
+		if (!HabitationResearched) {
+			Scout.SetActive (false);
+		} else {
+			Scout.SetActive (true);
+		}
+		if (!PlanetarySurveyResearched) {
+			Scientist.SetActive (false);
+		} else {
+			Scientist.SetActive (true);
+		}
 		#endregion
 		#region Tier 1
 		#region Tier 1 Biology
@@ -713,11 +724,7 @@ public class TechTree : MonoBehaviour {
 		}
 		#endregion
 		#region Tier 1 Engineering
-		if (!CommunicationNetworkResearched) {
-			Scientist.SetActive (false);
-		} else {
-			Scientist.SetActive (true);
-		}
+
 		if (ConstructorCrewsResearched && !extraCC) {
 			city.extra += 3;
 			extraCC = true;

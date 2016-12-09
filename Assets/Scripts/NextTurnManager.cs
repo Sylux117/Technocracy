@@ -32,6 +32,7 @@ public class NextTurnManager : MonoBehaviour {
 
 	void Update () {
 		units = GameObject.FindGameObjectsWithTag ("Unit");
+		ShowResources ();
 	}
 
 	#region Functions
@@ -39,7 +40,9 @@ public class NextTurnManager : MonoBehaviour {
 
 		for (int i = 0; i < units.Length; i++) {
 			if (units [i].GetComponent <Unit> ().currentPath == null) {
-				return;
+				if (units [i].GetComponent <Unit> ().waiting == false) {
+					return;
+				}
 			}
 		}
 
@@ -59,7 +62,6 @@ public class NextTurnManager : MonoBehaviour {
 
 
 		Resources ();
-		ShowResources ();
 		this.gameObject.GetComponent <MouseManager> ().slider.GetComponent <Slider> ().value = GameObject.FindGameObjectWithTag ("City").GetComponent <CityManagement> ().food;
 		this.gameObject.GetComponent <MouseManager> ().text.text = (GameObject.FindGameObjectWithTag ("City").GetComponent <CityManagement> ().cityLevel.ToString ());
 		ShowTurn ();

@@ -2273,6 +2273,11 @@ MonoBehaviour:
   moving: 0
   moveSpeed: 2
   isBeingTrained: 0
+  unitCanvas: {fileID: 0}
+  waiting: 0
+  CombatUnit: 0
+  SecurityForces: 0
+  Scientist: 0
 --- !u!1 &203691947
 GameObject:
   m_ObjectHideFlags: 0
@@ -12521,6 +12526,22 @@ MonoBehaviour:
     hexVisualPrefab: {fileID: 123152, guid: c17e83b6906f8aa46b7f8bbbe96a9a7d, type: 2}
     isWalkable: 1
     movementCost: 2
+  - name: Alien G F
+    hexVisualPrefab: {fileID: 128962, guid: d4b14ec553a3b134783f7017340f7699, type: 2}
+    isWalkable: 1
+    movementCost: 2
+  - name: Alien G H
+    hexVisualPrefab: {fileID: 144640, guid: 0620f4262fb677647bb3a13bd5408b45, type: 2}
+    isWalkable: 1
+    movementCost: 2
+  - name: Alien P F
+    hexVisualPrefab: {fileID: 146036, guid: 4e51c7815bce76541923a9796b719cb0, type: 2}
+    isWalkable: 1
+    movementCost: 2
+  - name: Alien P H
+    hexVisualPrefab: {fileID: 104644, guid: 02325a6e3e64ac44cb68c81199054a2b, type: 2}
+    isWalkable: 1
+    movementCost: 2
   hexType: 
 --- !u!4 &1004492986
 Transform:
@@ -12855,6 +12876,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1018390439}
+--- !u!1 &1018392534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1018392535}
+  m_Layer: 0
+  m_Name: UnitCanvasGroup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1018392535
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1018392534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
 --- !u!1 &1021392397
 GameObject:
   m_ObjectHideFlags: 0
@@ -18808,6 +18857,7 @@ MonoBehaviour:
   Solar: {fileID: 2072644817}
   Sensor: {fileID: 626544688}
   Security: {fileID: 1913941068}
+  Scout: {fileID: 406111476}
   extraCC: 0
   extraPE: 0
   extraR: 0
