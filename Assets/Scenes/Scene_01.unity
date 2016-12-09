@@ -13,7 +13,7 @@ SceneSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 6
+  serializedVersion: 7
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -37,12 +37,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.38653415, g: 0.41996711, b: 0.48573458, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 6
+  serializedVersion: 7
   m_GIWorkflowMode: 0
-  m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -53,17 +53,22 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 3
+    serializedVersion: 4
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
     m_TextureHeight: 1024
+    m_AO: 0
     m_AOMaxDistance: 1
-    m_Padding: 2
     m_CompAOExponent: 0
+    m_CompAOExponentDirect: 0
+    m_Padding: 2
     m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
     m_TextureCompression: 1
+    m_DirectLightInLightProbes: 1
     m_FinalGather: 0
+    m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
   m_LightingDataAsset: {fileID: 0}
@@ -3089,10 +3094,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u201CThe more our society grows, the more energy we need \u2013 for research,
-    productivity, and day to day life. We must find ways to interwine our grid and
-    make it more efficient, so that everyone\u2019s needs are addressed.\"\n\nBoosts
-    yield of Energy Buildings."
+  m_Text: '"We have gained the ability to directly engineer the DNA of human babies
+    before they are born, in order to correct common birth defects, and even grant
+    them boosts in certain fields of our choosing. This is the next step in our evolution."
+
+
+    Boosts production, food, and science. Requires Biogenetics.'
 --- !u!222 &226862476
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11137,7 +11144,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1890542935}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15289,7 +15296,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2039749984}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.56600004
+  m_Size: 0.566
   m_NumberOfSteps: 11
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15470,9 +15477,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u201CResearch is being conducted into new propulsion technology, so that
-    we may be able to look into space travel and really fast on-planet transportation.\u201D\n\nIncrease
-    movement of all units by 1."
+  m_Text: '"We are now able to become one with the machines we use. We can augment
+    our bodies mechanically or with nano-chips, so that we may have greater strength
+    or faster reflexes. The possibilities are endless."
+
+
+    Boosts production, food, and science. Requires Prosthetics and Computers.'
 --- !u!222 &1068118104
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16968,9 +16978,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u201CAs our jobs get more complicated, the tools we need to exceute them
-    get smaller and more precise.  When you can\u2019t reach it yourself, build something
-    that can do it for you.\u201D\n\nBoosts yield of all Physics Labs by 1."
+  m_Text: "\u201CWe propose to enact a Scientific Technocracy \u2013 so that our collective
+    goal is to adopt progress and scientific fact as our guidance. Only a council
+    of the most qualified researchers in each field will lead the way, along with
+    the AI\u2019s steady hand.\u201D\n\nIncrease yield of all laboratories by 1."
 --- !u!222 &1191855707
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17854,17 +17865,20 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 39a262b9ff66bef4bb2837f91cbbd32d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -28314,10 +28328,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u201CIf we can expand our communications relay, we may be able to reach
-    far greater distances and even set up sensors throughout our perimeter. We may
-    also be able to increase the efficiency of research and data collection.\"\n\nAllows
-    building Sensor Relay. Boosts yield of all laboratories by 1."
+  m_Text: '"We have developed a solid enough understanding of Alien Biology that we
+    believe we may be able to domesticate the more docile species."
+
+
+    Enables capture, domestication, and breeding of aliens. Requires Alien Biology.'
 --- !u!222 &1935468330
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -30614,7 +30629,7 @@ Light:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2110740396}
   m_Enabled: 1
-  serializedVersion: 6
+  serializedVersion: 7
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
@@ -30624,6 +30639,7 @@ Light:
   m_Shadows:
     m_Type: 2
     m_Resolution: -1
+    m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
@@ -30636,10 +30652,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
 --- !u!4 &2110740398
 Transform:
   m_ObjectHideFlags: 0
