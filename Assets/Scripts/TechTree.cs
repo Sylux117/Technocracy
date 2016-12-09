@@ -35,6 +35,12 @@ public class TechTree : MonoBehaviour {
 	#endregion
 	#endregion
 	#region Tier 2
+	#region Tier 2 Biology
+	public Toggle AlienDomestication;
+	public Toggle Bioengineering;
+	public Toggle Augmentation;
+	public Toggle Technocracy;
+	#endregion
 	#region Tier 2 Engineering
 	public Toggle IndustrialBase;
 	public Toggle Pioneering;
@@ -77,6 +83,12 @@ public class TechTree : MonoBehaviour {
 	#endregion
 	#endregion
 	#region Tier 2
+	#region Tier 2 Biology
+	float AlienDomesticationCost = 40;
+	float BioengineeringCost = 40;
+	float AugmentationCost = 40;
+	float TechnocracyCost = 40;
+	#endregion
 	#region Tier 2 Engineering
 	float IndustrialBaseCost = 40;
 	float PioneeringCost = 40;
@@ -119,6 +131,12 @@ public class TechTree : MonoBehaviour {
 	#endregion
 	#endregion
 	#region Tier 2
+	#region Tier 2 Biology
+	public bool AlienDomesticationResearched = false;
+	public bool BioengineeringResearched = false;
+	public bool AugmentationResearched = false;
+	public bool TechnocracyResearched = false;
+	#endregion
 	#region Tier 2 Engineering
 	public bool IndustrialBaseResearched = false;
 	public bool PioneeringResearched = false;
@@ -200,6 +218,12 @@ public class TechTree : MonoBehaviour {
 		#endregion
 		#endregion
 		#region Tier 2
+		#region Tier 2 Biology
+		AlienDomestication.enabled = false;
+		Bioengineering.enabled = false;
+		Augmentation.enabled = false;
+		Technocracy.enabled = false;
+		#endregion
 		#region Tier 2 Engineering
 		IndustrialBase.enabled = false;
 		Pioneering.enabled = false;
@@ -298,6 +322,24 @@ public class TechTree : MonoBehaviour {
 		#endregion
 		#endregion
 		#region Tier 2
+		#region Tier 2 Biology
+		if (AlienDomesticationCost <= city.biology && !AlienDomesticationResearched) {
+			BiologyImage.color = Color.red;
+			canResearch = true;
+		}
+		if (BioengineeringCost <= city.biology && !BioengineeringResearched) {
+			BiologyImage.color = Color.red;
+			canResearch = true;
+		}
+		if (AugmentationCost <= city.biology && !AugmentationResearched) {
+			BiologyImage.color = Color.red;
+			canResearch = true;
+		}
+		if (TechnocracyCost <= city.biology && !TechnocracyResearched) {
+			BiologyImage.color = Color.red;
+			canResearch = true;
+		}
+		#endregion
 		#region Tier 2 Engineering
 		if (IndustrialBaseCost <= city.engineering && !IndustrialBaseResearched) {
 			EngineeringImage.color = Color.red;
@@ -317,7 +359,7 @@ public class TechTree : MonoBehaviour {
 		}
 		#endregion
 		#region Tier 2 Physics
-		if (DatabankUplinksCost <= city.physics && !DatabankUplinksResearched) {
+		if (DatabankUplinksCost <= city.physics && !DatabankUplinksResearched && CommunicationNetworkResearched) {
 			PhysicsImage.color = Color.red;
 			canResearch = true;
 		}
@@ -417,6 +459,20 @@ public class TechTree : MonoBehaviour {
 		#endregion
 		#endregion
 		#region Tier 2
+		#region Tier 2 Biology
+		if (city.biology >= AlienDomesticationCost && !AlienDomesticationResearched && AlienBiologyResearched) {
+			AlienDomestication.enabled = true;
+		}
+		if (city.biology >= BioengineeringCost && !BioengineeringResearched && BiogeneticsResearched) {
+			Bioengineering.enabled = true;
+		}
+		if (city.biology >= AugmentationCost && !AugmentationResearched && ProstheticsResearched) {
+			Augmentation.enabled = true;
+		}
+		if (city.biology >= TechnocracyCost && !TechnocracyResearched && SocialPhychResearched) {
+			Technocracy.enabled = true;
+		}
+		#endregion
 		#region Tier 2 Engineering
 
 		if (city.engineering >= IndustrialBaseCost && !IndustrialBaseResearched && MineralProcessingResearched) {
@@ -438,7 +494,7 @@ public class TechTree : MonoBehaviour {
 		#endregion
 		#region Tier 2 Physics
 
-		if (city.physics >= DatabankUplinksCost && !DatabankUplinksResearched && ComputersResearched) {
+		if (city.physics >= DatabankUplinksCost && !DatabankUplinksResearched && CommunicationNetworkResearched && ComputersResearched) {
 			DatabankUplinks.enabled = true;
 		}
 
@@ -607,6 +663,40 @@ public class TechTree : MonoBehaviour {
 		#endregion
 		#endregion
 		#region Tier 2
+		#region Tier 2 Biology
+		if (AlienDomestication.isOn == true) {
+			AlienDomesticationResearched = true;
+			city.ResearchPay(0,AlienDomesticationCost);
+			AlienDomestication.isOn = false;
+			AlienDomestication.enabled = false;
+			AlienDomestication.gameObject.SetActive(false);
+			canResearch = false;
+		}
+		if (Bioengineering.isOn == true) {
+			BioengineeringResearched = true;
+			city.ResearchPay(0,BioengineeringCost);
+			Bioengineering.isOn = false;
+			Bioengineering.enabled = false;
+			Bioengineering.gameObject.SetActive(false);
+			canResearch = false;
+		}
+		if (Augmentation.isOn == true) {
+			AugmentationResearched = true;
+			city.ResearchPay(0,AugmentationCost);
+			Augmentation.isOn = false;
+			Augmentation.enabled = false;
+			Augmentation.gameObject.SetActive(false);
+			canResearch = false;
+		}
+		if (Technocracy.isOn == true) {
+			TechnocracyResearched = true;
+			city.ResearchPay(0,TechnocracyCost);
+			Technocracy.isOn = false;
+			Technocracy.enabled = false;
+			Technocracy.gameObject.SetActive(false);
+			canResearch = false;
+		}
+		#endregion
 		#region Tier 2 Engineering
 
 		if (IndustrialBase.isOn == true) {
